@@ -76,8 +76,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           radius: 64, backgroundImage: MemoryImage(_image!))
                       : const CircleAvatar(
                           radius: 64,
-                          backgroundImage: NetworkImage(
-                              "https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png"),
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: AssetImage(
+                              "assets/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"),
                         ),
                   Positioned(
                     bottom: -10,

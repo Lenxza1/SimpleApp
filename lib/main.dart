@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_app/provider/user_provider.dart';
 import 'package:simple_app/responsive/responsive_layout_screen.dart';
 import 'package:simple_app/responsive/web.dart';
 import 'package:simple_app/screens/home_screeens.dart';
@@ -35,18 +37,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const LandingPage(),
-        '/Login': (context) => const LoginScreen(),
-        '/SignUp': (context) => const SignupScreen(),
-        '/Home': (context) => const HomeScreens()
-      },
-      debugShowCheckedModeBanner: false,
-      title: 'Simple App',
-      theme: ThemeData.dark()
-          .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const LandingPage(),
+          '/Login': (context) => const LoginScreen(),
+          '/SignUp': (context) => const SignupScreen(),
+          '/Home': (context) => const HomeScreens(),
+        },
+        debugShowCheckedModeBanner: false,
+        title: 'Simple App',
+        theme: ThemeData.dark()
+            .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
+      ),
     );
   }
 }

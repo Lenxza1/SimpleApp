@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_app/model/auth_method.dart';
 import 'package:simple_app/utils/app_style.dart';
@@ -34,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (res != 'Success') {
       showSnackBar(context, res);
     } else {
-      Navigator.pushNamedAndRemoveUntil(context, '/Home', (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
     }
   }
 
@@ -49,6 +50,11 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(flex: 2, child: Container()),
+              SvgPicture.asset(
+                'assets/logo_png.png',
+                color: primaryColor,
+                height: 258,
+              ),
               TextFieldInput(
                   textEditingController: _emailTextController,
                   hintText: 'Masukan Email Anda',

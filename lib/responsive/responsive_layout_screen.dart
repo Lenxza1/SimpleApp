@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:simple_app/utils/dimension.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_app/provider/user_provider.dart';
+import 'package:simple_app/utils/global.dart';
 
 class ResponsiveLayout extends StatefulWidget {
   final Widget webScreenLayout;
@@ -15,6 +17,18 @@ class ResponsiveLayout extends StatefulWidget {
 }
 
 class _ResponsiveLayoutState extends State<ResponsiveLayout> {
+  @override
+  void initState() {
+    super.initState();
+    addData();
+  }
+
+  addData() async {
+    // ignore: no_leading_underscores_for_local_identifiers
+    UserProvider _userProvider = Provider.of(context, listen: false);
+    await _userProvider.refreshUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: ((context, constraints) {
